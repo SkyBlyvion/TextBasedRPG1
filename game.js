@@ -202,7 +202,7 @@ function renderNotes(container) {
   html += `<button onclick="addNote()">Nouvelle note</button>`;
   player.notes.forEach((note, index) => {
     html += `<div class="note-item">
-      <input type="text" value="${note}" onchange="editNote(${index}, this.value)">
+      <textarea rows="2" onchange="editNote(${index}, this.value)">${note}</textarea>
       <button onclick="deleteNote(${index})">X</button>
     </div>`;
   });

@@ -33,7 +33,7 @@ body {
 #text-area {
   background: #222;
   border: 2px solid #555;
-  padding: 15px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -42,22 +42,27 @@ body {
   flex: 1;
   overflow-y: auto;
   white-space: pre-line;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 1rem;
-  line-height: 1.4;
+  line-height: 1.5;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #1a1a1a;
 }
 
 #choices button {
   display: block;
-  margin: 5px 0;
+  margin: 6px 0;
   width: 100%;
   padding: 10px;
   cursor: pointer;
   background: #333;
   border: 1px solid #555;
   color: #eee;
-  font-size: 0.95rem;
-  border-radius: 5px;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
 #choices button:hover {
@@ -67,23 +72,24 @@ body {
 #hud {
   background: #222;
   border: 2px solid #555;
-  padding: 12px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  border-radius: 6px;
 }
 
 #hud-top button {
   display: block;
   width: 100%;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   background: #333;
   border: 1px solid #555;
   color: #eee;
   padding: 8px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 #hud-top button:hover {
@@ -92,7 +98,7 @@ body {
 
 #hud-bottom {
   margin-top: 15px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
@@ -115,47 +121,50 @@ body {
   background: #222;
   border: 2px solid #555;
   padding: 20px;
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  max-width: 900px;
+  height: 80%;
   overflow-y: auto;
   position: relative;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 0 20px rgba(0,0,0,0.8);
   font-size: 1rem;
 }
 
 #modal-close {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 12px;
+  right: 18px;
   cursor: pointer;
   color: #eee;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .note-item {
   display: flex;
   align-items: center;
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
-.note-item input {
+.note-item input,
+.note-item textarea {
   flex: 1;
-  padding: 6px;
-  font-size: 0.95rem;
+  padding: 8px;
+  font-size: 1rem;
   background: #333;
   border: 1px solid #555;
   color: #eee;
   border-radius: 4px;
+  resize: none;
 }
 
 .note-item button {
-  margin-left: 8px;
+  margin-left: 10px;
   background: #444;
   border: 1px solid #666;
   color: #eee;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 4px;
 }
 
@@ -163,7 +172,7 @@ body {
   background: #666;
 }
 
-/* Responsive : petit écran */
+/* Responsive */
 @media (max-width: 900px) {
   #game-container {
     grid-template-columns: 1fr;
@@ -180,5 +189,10 @@ body {
 
   #text-area {
     order: 2;
+  }
+
+  #modal {
+    width: 95%;
+    height: 85%;
   }
 }
