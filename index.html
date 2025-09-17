@@ -21,18 +21,39 @@
 
     <!-- HUD -->
     <div id="hud">
-      <h2>Stats</h2>
-      <p><b>Nom:</b> <span id="stat-name"></span></p>
-      <p><b>HP:</b> <span id="stat-hp"></span></p>
-      <p><b>Or:</b> <span id="stat-gold"></span></p>
+      <!-- Boutons actions et modales -->
+      <div id="hud-top">
+        <button onclick="openModal('character')">Character</button>
+        <button onclick="openModal('inventory')">Inventory</button>
+        <button onclick="openModal('journal')">Journal</button>
+        <button onclick="openModal('archive')">Archive</button>
+        <button onclick="openModal('map')">Map</button>
+        <button onclick="openModal('settings')">Settings</button>
+        <button onclick="wait()">Wait</button>
+        <button onclick="sleep()">Sleep</button>
+        <button onclick="saveGame()">Save</button>
+        <button onclick="loadGame()">Load</button>
+      </div>
 
-      <h2>Inventaire</h2>
-      <ul id="inventory-list"></ul>
+      <!-- Encart stats bas -->
+      <div id="hud-bottom">
+        <h2>Stats</h2>
+        <p><b>Nom:</b> <span id="stat-name"></span></p>
+        <p><b>Heure:</b> <span id="stat-time"></span></p>
+        <p><b>HP:</b> <span id="stat-hp"></span></p>
+        <p><b>Défense:</b> <span id="stat-defense"></span>%</p>
+        <p><b>Fatigue:</b> <span id="stat-fatigue"></span></p>
+        <p><b>Nourishment:</b> <span id="stat-nourishment"></span></p>
+        <p><b>Appearance:</b> <span id="stat-appearance"></span></p>
+      </div>
+    </div>
+  </div>
 
-      <h2>Système</h2>
-      <button onclick="saveGame()">Sauvegarder</button>
-      <button onclick="loadGame()">Charger</button>
-      <button onclick="resetGame()">Reset</button>
+  <!-- Modales -->
+  <div id="modal-overlay" class="hidden">
+    <div id="modal">
+      <span id="modal-close" onclick="closeModal()">X</span>
+      <div id="modal-content"></div>
     </div>
   </div>
 
