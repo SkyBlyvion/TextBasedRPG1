@@ -118,3 +118,23 @@ body {
   cursor: pointer;
   color: #eee;
 }
+
+/* style pour boutons dans la modale Notes*/
+.note-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.note-item button {
+  margin-left: 5px;
+  background: #444;
+  border: 1px solid #666;
+  color: #eee;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+.note-item button:hover {
+  background: #666;
+}

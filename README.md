@@ -71,7 +71,7 @@ Le projet vise à développer un **jeu narratif textuel moderne et accessible** 
 - Inventaire dynamique.  
 - Sauvegarde/chargement en local. 
 - Ajout systéme date & Heure basée sur Elder Scrolls.
-
+- Ajout fonctionnalité : Notes
 ### Modales
 - ajout de modales pour [Character, Inventory, Journal, Archive, Map, Settings] 
 

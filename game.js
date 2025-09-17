@@ -25,7 +25,6 @@ const months = [
   "Hearthfire", "Frost Fall", "Sun's Dusk", "Evening Star"
 ];
 
-// Avance le temps
 function advanceTime(minutesToAdd) {
   gameTime.minutes += minutesToAdd;
   
@@ -50,7 +49,6 @@ function advanceTime(minutesToAdd) {
   updateDateHUD();
 }
 
-// Affichage dans le HUD
 function updateDateHUD() {
   const weekday = daysOfWeek[gameTime.weekday];
   const month = months[gameTime.month];
@@ -61,7 +59,6 @@ function updateDateHUD() {
     `${weekday}, ${gameTime.day} ${month}, ${h}:${m}`;
 }
 
-// Avance automatiquement le temps (1 min IRL)
 setInterval(() => {
   advanceTime(TIME_SCALE);
 }, 60000);
@@ -79,7 +76,8 @@ let player = {
   appearance: "Normal",
   inventory: ["Épée"],
   journal: [],
-  archive: []
+  archive: [],
+  notes: [] // Nouveau : système de notes
 };
 
 // ======================
@@ -147,7 +145,8 @@ function resetGame() {
     appearance: "Normal",
     inventory: ["Épée"],
     journal: [],
-    archive: []
+    archive: [],
+    notes: []
   };
   updateHUD();
   write("[Nouvelle partie]");
@@ -176,6 +175,9 @@ function openModal(type) {
     content.innerHTML = "<h2>Journal</h2><ul>" +
       player.journal.map(e => `<li>${e}</li>`).join("") + "</ul>";
   }
+  else if (type === "notes") {
+    renderNotes(content);
+  }
   else if (type === "archive") {
     content.innerHTML = "<h2>Archive</h2><ul>" +
       player.archive.map(e => `<li>${e}</li>`).join("") + "</ul>";
@@ -190,6 +192,36 @@ function openModal(type) {
 
 function closeModal() {
   document.getElementById("modal-overlay").classList.add("hidden");
+}
+
+// ======================
+// Notes CRUD
+// ======================
+function renderNotes(container) {
+  let html = "<h2>Notes</h2><div>";
+  html += `<button onclick="addNote()">Nouvelle note</button>`;
+  player.notes.forEach((note, index) => {
+    html += `<div class="note-item">
+      <input type="text" value="${note}" onchange="editNote(${index}, this.value)">
+      <button onclick="deleteNote(${index})">X</button>
+    </div>`;
+  });
+  html += "</div>";
+  container.innerHTML = html;
+}
+
+function addNote() {
+  player.notes.push("Nouvelle note");
+  openModal("notes");
+}
+
+function editNote(index, newValue) {
+  player.notes[index] = newValue;
+}
+
+function deleteNote(index) {
+  player.notes.splice(index, 1);
+  openModal("notes");
 }
 
 // ======================
