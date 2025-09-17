@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Text RPG HUD</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    
+    <!-- Zone illustration -->
+    <div id="image-area">
+      <div class="placeholder">[Illustration ici]</div>
+    </div>
+
+    <!-- Zone texte -->
+    <div id="text-area">
+      <div id="output"></div>
+      <div id="choices"></div>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud">
+      <h2>Stats</h2>
+      <p><b>Nom:</b> <span id="stat-name"></span></p>
+      <p><b>HP:</b> <span id="stat-hp"></span></p>
+      <p><b>Or:</b> <span id="stat-gold"></span></p>
+
+      <h2>Inventaire</h2>
+      <ul id="inventory-list"></ul>
+
+      <h2>Système</h2>
+      <button onclick="saveGame()">Sauvegarder</button>
+      <button onclick="loadGame()">Charger</button>
+      <button onclick="resetGame()">Reset</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
