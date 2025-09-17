@@ -60,6 +60,7 @@ Le projet vise à développer un **jeu narratif textuel moderne et accessible** 
     - Heure du jeu  
     - Vie (HP)  
     - Défense (% armure)  
+    - Gold
     - Fatigue (endurance)  
     - Nourishment (faim/satiété)  
     - Appearance (charisme/présentation)  
@@ -68,7 +69,11 @@ Le projet vise à développer un **jeu narratif textuel moderne et accessible** 
 - Narration interactive via choix multiples.  
 - Gestion des stats du personnage.  
 - Inventaire dynamique.  
-- Sauvegarde/chargement en local.  
+- Sauvegarde/chargement en local. 
+- Ajout systéme date & Heure basée sur Elder Scrolls.
+
+### Modales
+- ajout de modales pour [Character, Inventory, Journal, Archive, Map, Settings] 
 
 ---
 

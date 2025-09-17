@@ -1,7 +1,74 @@
 const output = document.getElementById("output");
 const choices = document.getElementById("choices");
 
+// ======================
+// Configuration du temps
+// ======================
+const TIME_SCALE = 10; // 1 min IRL = 10 min en jeu
+
+let gameTime = {
+  minutes: 0,
+  hours: 7,
+  day: 1,
+  month: 0,
+  year: 1,
+  weekday: 1 // 0 = Sundas, 1 = Morndas, etc.
+};
+
+const daysOfWeek = [
+  "Sundas", "Morndas", "Tirdas", "Middas", "Turdas", "Fredas", "Loredas"
+];
+
+const months = [
+  "Morning Star", "Sun's Dawn", "First Seed", "Rain's Hand",
+  "Second Seed", "Mid Year", "Sun's Height", "Last Seed",
+  "Hearthfire", "Frost Fall", "Sun's Dusk", "Evening Star"
+];
+
+// Avance le temps
+function advanceTime(minutesToAdd) {
+  gameTime.minutes += minutesToAdd;
+  
+  while (gameTime.minutes >= 60) {
+    gameTime.minutes -= 60;
+    gameTime.hours++;
+  }
+  while (gameTime.hours >= 24) {
+    gameTime.hours -= 24;
+    gameTime.day++;
+    gameTime.weekday = (gameTime.weekday + 1) % 7;
+  }
+  while (gameTime.day > 30) { // 30 jours par mois
+    gameTime.day = 1;
+    gameTime.month++;
+  }
+  while (gameTime.month >= 12) {
+    gameTime.month = 0;
+    gameTime.year++;
+  }
+
+  updateDateHUD();
+}
+
+// Affichage dans le HUD
+function updateDateHUD() {
+  const weekday = daysOfWeek[gameTime.weekday];
+  const month = months[gameTime.month];
+  const h = String(gameTime.hours).padStart(2, "0");
+  const m = String(gameTime.minutes).padStart(2, "0");
+  
+  document.getElementById("stat-time").textContent =
+    `${weekday}, ${gameTime.day} ${month}, ${h}:${m}`;
+}
+
+// Avance automatiquement le temps (1 min IRL)
+setInterval(() => {
+  advanceTime(TIME_SCALE);
+}, 60000);
+
+// ======================
 // État du joueur
+// ======================
 let player = {
   name: "Héros",
   hp: 20,
@@ -10,7 +77,6 @@ let player = {
   fatigue: 0,
   nourishment: 100,
   appearance: "Normal",
-  time: "Day 1, 07:00",
   inventory: ["Épée"],
   journal: [],
   archive: []
@@ -33,21 +99,27 @@ function updateHUD() {
   document.getElementById("stat-fatigue").textContent = player.fatigue;
   document.getElementById("stat-nourishment").textContent = player.nourishment;
   document.getElementById("stat-appearance").textContent = player.appearance;
-  document.getElementById("stat-time").textContent = player.time;
+  updateDateHUD();
 }
 
 // ======================
 // Sauvegarde / Chargement
 // ======================
 function saveGame() {
-  localStorage.setItem("rpgSave", JSON.stringify(player));
+  const saveData = {
+    player: player,
+    gameTime: gameTime
+  };
+  localStorage.setItem("rpgSave", JSON.stringify(saveData));
   write("[Partie sauvegardée]");
 }
 
 function loadGame() {
   let save = localStorage.getItem("rpgSave");
   if (save) {
-    player = JSON.parse(save);
+    const saveData = JSON.parse(save);
+    player = saveData.player;
+    gameTime = saveData.gameTime;
     updateHUD();
     write("[Partie chargée]");
   } else {
@@ -57,6 +129,14 @@ function loadGame() {
 
 function resetGame() {
   localStorage.removeItem("rpgSave");
+  gameTime = {
+    minutes: 0,
+    hours: 7,
+    day: 1,
+    month: 0,
+    year: 1,
+    weekday: 1
+  };
   player = {
     name: "Héros",
     hp: 20,
@@ -65,7 +145,6 @@ function resetGame() {
     fatigue: 0,
     nourishment: 100,
     appearance: "Normal",
-    time: "Day 1, 07:00",
     inventory: ["Épée"],
     journal: [],
     archive: []
@@ -136,6 +215,7 @@ document.getElementById("modal-overlay").addEventListener("click", (e) => {
 // ======================
 function wait() {
   player.fatigue += 1;
+  advanceTime(60); // attendre = 1h en jeu
   write("Tu attends un moment...");
   updateHUD();
 }
@@ -143,6 +223,7 @@ function wait() {
 function sleep() {
   player.fatigue = Math.max(0, player.fatigue - 5);
   player.hp = Math.min(20, player.hp + 5);
+  advanceTime(480); // dormir = 8h en jeu
   write("Tu dors et récupères un peu d'énergie.");
   updateHUD();
 }
