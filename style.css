@@ -12,7 +12,7 @@ body {
 #game-container {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
-  gap: 10px;
+  gap: 15px;
   width: 95%;
   height: 95%;
 }
@@ -23,6 +23,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.1rem;
 }
 
 .placeholder {
@@ -32,7 +33,7 @@ body {
 #text-area {
   background: #222;
   border: 2px solid #555;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
 }
@@ -42,17 +43,21 @@ body {
   overflow-y: auto;
   white-space: pre-line;
   margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 #choices button {
   display: block;
   margin: 5px 0;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
   background: #333;
   border: 1px solid #555;
   color: #eee;
+  font-size: 0.95rem;
+  border-radius: 5px;
 }
 
 #choices button:hover {
@@ -62,21 +67,23 @@ body {
 #hud {
   background: #222;
   border: 2px solid #555;
-  padding: 10px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 0.95rem;
 }
 
 #hud-top button {
   display: block;
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   background: #333;
   border: 1px solid #555;
   color: #eee;
-  padding: 5px;
+  padding: 8px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #hud-top button:hover {
@@ -84,7 +91,9 @@ body {
 }
 
 #hud-bottom {
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 #modal-overlay.hidden {
@@ -99,42 +108,77 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 #modal {
   background: #222;
   border: 2px solid #555;
   padding: 20px;
-  width: 400px;
-  height: 300px;
+  width: 70%;
+  height: 70%;
   overflow-y: auto;
   position: relative;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  font-size: 1rem;
 }
 
 #modal-close {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 10px;
+  right: 15px;
   cursor: pointer;
   color: #eee;
+  font-size: 1.2rem;
 }
 
-/* style pour boutons dans la modale Notes*/
 .note-item {
   display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.note-item input {
+  flex: 1;
+  padding: 6px;
+  font-size: 0.95rem;
+  background: #333;
+  border: 1px solid #555;
+  color: #eee;
+  border-radius: 4px;
 }
 
 .note-item button {
-  margin-left: 5px;
+  margin-left: 8px;
   background: #444;
   border: 1px solid #666;
   color: #eee;
   cursor: pointer;
-  padding: 2px 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 
 .note-item button:hover {
   background: #666;
+}
+
+/* Responsive : petit écran */
+@media (max-width: 900px) {
+  #game-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  #hud {
+    order: 3;
+  }
+
+  #image-area {
+    order: 1;
+  }
+
+  #text-area {
+    order: 2;
+  }
 }
