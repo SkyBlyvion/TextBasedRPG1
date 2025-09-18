@@ -1,0 +1,36 @@
+
+Text based RPG en HTML,css,js
+
+
+
+DONE :
+Gauche : Illustration, Milieu : Texte et boutons de choix relatif au texte et à l'aventure, droite Haut: Bouton qui ouvre modale pour Character, Inventory, Settings. Bouton Save et Load. Bouton Journal et Archive. Bouton Map, Wait, Sleep. Droite bas : Encart qui montre l'heure, la vie, la défense(%armure), fatigue, Nourishment, Appearance(charisme) OK
+Concernant le systéme d'heure et de date on va utiliser le calendrier des elder scrolls : OK
+Ajout modales pour chaque bouton du hud : OK
+
+En-Cours : 
+
+50% fait : 
+Carte 2d ou carte svg avec écouteurs de clic  / SVG Interactive : ~OK
+
+TODO : 
+
+
+Exporter sauvegarde, importer sauvegarde ,Supprimer sauvegarde : 
+
+déplacer save et load dans settings, ajouter import et export pour la save dans settings:
+
+améliorer le systéme de boutons du hud pour la section <!-- Boutons actions et modales -->
+
+settings  : bouton [Save] [Load] [Delete] [import] [export] ( delete nous permet de choisir quelle save supprimer ) (import depuis storage de l'user) (export que l'user download) :
+
+Créer plusieur musiques ( villes, travel(can add mamals sounds & insects & birds), specific POI, atmospheric, ) :
+
+succés : a venir 
+
+Mapper des touches du clavier pour certains raccourcis : Map = m, journal = j, inventory = i,  
+
+Réfléchir au feedback, feedback touches et accessibilité. pas du feedback des joueurs vers le dev mais feedback Interactivité avec le jeux.
+
+
+
