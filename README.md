@@ -98,3 +98,101 @@ Le projet vise à développer un **jeu narratif textuel moderne et accessible** 
 - Gestion de l’**aléatoire** (rencontres, événements).  
 - Export/import de sauvegardes via fichiers JSON.  
 - Intégration de **visuels générés par IA** pour illustrer les scènes.  
+
+
+
+
+
+A implémenter : 
+
+- Menu principal avec New Game / Load Game / Options.
+
+- 20 saves manuelles max (slots réutilisables) + 2 autosaves qui écrasent.
+
+- Narration indexée (chaque choix/scène a un ID).
+
+- Sauvegarde = juste l’ID courant + état du joueur.
+
+- Chargement = on relance showScene(ID).
+
+
+1. Écran Menu principal
+
+À l’ouverture du jeu, avant même d’afficher le HUD :
+
+New Game → réinitialise le joueur et démarre directement.
+
+Load Game → ouvre une liste (modale ou menu) avec les sauvegardes disponibles :
+
+jusqu’à 20 manuelles (nommées par le joueur ou datées automatiquement)
+
+2 autosaves (écrasées toutes les 10 et 30 min).
+
+Options → paramètres de jeu (on pourra y gérer la vitesse du temps, volume, affichage…).
+
+Techniquement, tu peux :
+
+masquer ton #game-container par défaut,
+
+afficher un #menu-screen,
+
+puis afficher le jeu quand on clique New Game ou qu’on charge une save.
+
+2. Système de sauvegardes
+🔹 Organisation
+
+Autosaves :
+
+autosave_10 (remplacée toutes les 10 min)
+
+autosave_30 (remplacée toutes les 30 min)
+
+Manuelles :
+
+manual_0 → manual_19 (20 slots max)
+
+si le joueur veut en créer une de plus : soit il choisit le slot à écraser, soit tu empêches.
+
+Toutes stockées dans localStorage sous forme JSON.
+Un petit index JSON peut lister les saves existantes pour remplir ton menu Load Game.
+
+Exemple :
+
+{
+  "manual_saves": ["manual_0", "manual_1"],
+  "autosaves": ["autosave_10", "autosave_30"]
+}
+
+3. Enregistrement de la progression narrative (showChoices)
+
+Tu as raison : sauvegarder tout le texte affiché n’a pas de sens → ça prend de la place.
+Le mieux est de gérer la narration par index ou ID :
+
+🔹 Exemple concret
+// Table des scènes
+const scenes = {
+  0: { text: "Bienvenue dans le RPG textuel !", choices: [1, 2] },
+  1: { text: "Tu vois une forêt sombre...", choices: [3] },
+  2: { text: "Tu rencontres un gobelin !", choices: [] },
+  3: { text: "La forêt devient plus dense...", choices: [] }
+};
+
+// État du joueur
+let player = {
+  currentScene: 0,
+  // ... autres stats
+};
+
+🔹 Fonction d’affichage
+function showScene(sceneId) {
+  const scene = scenes[sceneId];
+  player.currentScene = sceneId;
+
+  write(scene.text);
+  showChoices(scene.choices.map(id => ({
+    text: scenes[id].text.substring(0, 30) + "...", // exemple
+    action: () => showScene(id)
+  })));
+}
+
+systéme de voyage entre chaque poi utilisant une certaine durée en fonction de la distance a parcourir

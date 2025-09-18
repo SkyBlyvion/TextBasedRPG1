@@ -183,8 +183,76 @@ function openModal(type) {
       player.archive.map(e => `<li>${e}</li>`).join("") + "</ul>";
   }
   else if (type === "map") {
-    content.innerHTML = "<h2>Map</h2><p>[Carte du monde ici]</p>";
+    const modal = document.getElementById("modal");
+    modal.classList.add("map-modal");
+
+    content.innerHTML = `
+      <div id="map-container">
+        <div id="map-viewport"></div>
+      </div>
+    `;
+
+    const viewport = document.getElementById("map-viewport");
+
+    // Charger le SVG inline
+    fetch("/assets/map.svg")
+      .then(res => res.text())
+      .then(svg => {
+        viewport.innerHTML = svg;
+      });
+
+    // Variables de zoom/déplacement
+    let scale = 1;
+    let posX = 0, posY = 0;
+    let isDragging = false;
+    let isPanning = false;
+    let startX, startY;
+
+    // Zoom molette
+    document.getElementById("map-container").addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const zoomSpeed = 0.1;
+      if (e.deltaY < 0) {
+        scale = Math.min(scale + zoomSpeed, 5);
+      } else {
+        scale = Math.max(scale - zoomSpeed, 0.5);
+      }
+      updateTransform(true);
+    });
+
+    // Drag clic gauche
+    document.getElementById("map-container").addEventListener("mousedown", (e) => {
+      if (e.button === 0) {
+        e.preventDefault();
+        isDragging = true;
+        startX = e.clientX - posX;
+        startY = e.clientY - posY;
+      }
+    });
+
+    window.addEventListener("mouseup", () => isDragging = false);
+
+    window.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        posX = e.clientX - startX;
+        posY = e.clientY - startY;
+
+        if (!isPanning) {
+          isPanning = true;
+          requestAnimationFrame(() => {
+            updateTransform(false);
+            isPanning = false;
+          });
+        }
+      }
+    });
+
+    function updateTransform(isZoom = false) {
+      viewport.style.transition = isZoom ? "transform 0.1s ease" : "none";
+      viewport.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+    }
   }
+
   else if (type === "settings") {
     content.innerHTML = "<h2>Settings</h2><p>Options à venir...</p>";
   }
@@ -192,6 +260,7 @@ function openModal(type) {
 
 function closeModal() {
   document.getElementById("modal-overlay").classList.add("hidden");
+  document.getElementById("modal").classList.remove("map-modal"); // reset
 }
 
 // ======================

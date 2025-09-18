@@ -196,3 +196,51 @@ body {
     height: 85%;
   }
 }
+
+
+
+/* Style spécial pour la map */
+#modal.map-modal {
+  width: 95vw;
+  height: 95vh;
+  max-width: none;
+  max-height: none;
+  overflow: hidden; /* important : pas de scroll interne */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#map-container {
+  width: 100%;
+  height: 100%;
+  background: #111;
+  overflow: hidden; /* on gère nous-mêmes le déplacement */
+  cursor: grab;
+}  
+
+#map-container, 
+#map-container * {
+  user-select: none;   /* empêche la sélection de texte */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+#map-container:active {
+  cursor: grabbing;
+}
+
+#map-viewport {
+  display: inline-block; 
+  transform-origin: center center;
+  /*transition: transform 0.05s linear;  smooth */
+}
+
+#game-map {
+  display: block;
+  max-width: none;
+  max-height: none;
+}
+/* FIN Style spécial pour la map */
+
