@@ -1,6 +1,11 @@
 
 Text based RPG en HTML,css,js
 
+Liens : 
+Createur de carte : 
+- https://github.com/Azgaar/Fantasy-Map-Generator?tab=readme-ov-file
+- https://azgaar.github.io/Fantasy-Map-Generator/
+
 
 
 DONE :

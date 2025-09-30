@@ -1,0 +1,123 @@
+Histoire / Lore du jeux RPG
+
+Creation du contexte de l'histoire :
+
+voir la map en piece jointe : 
+
+Donc pour le moment je n'ai pas d'histoire a proprement parler ni de lore, j'ai ça : 
+
+// ======================
+// Initialisation + allChoices
+// ======================
+write("Bienvenue dans le RPG textuel !");
+showChoices([
+  { text: "Regarder autour", action: () => write("Tu vois une forêt sombre...") },
+  { text: "Avancer au nord", action: () => write("Tu rencontres un gobelin !") },
+]);
+
+
+comme tu le voit c'est seulement deux choix ici pour le moment.
+
+donc je pense que le mieux serait d'utiliser la carte afin de créer notre histoire, sur cette carte svg il y a pleins de noms de villes dispersées.
+la carte est coupé en 3 [ ile de gauche, ilot central, ile de droite].
+je pense que nous devrions faire commencer le joueur sur l'ile de droite, puis au cours de son aventure le joueur aura la possibilité de prendre un bateau pour l'ilot central ou l'ile de gauche . 
+
+ce jeux c'est une sorte de RPG textuel avec une carte, des missions/quetes, un inventaire, système de sauvegarde, dormir et attendre, système de nourishment[prevoir nourriture], gold[reflechir a une economie], fatigue, appearance, clothing and armor, weapons, notes for the player to take notes, health and a calendar system. 
+
+
+[reflechir a une economie, par ville ou province ou carrément Ile]
+[prevoir nourriture]
+
+
+-----------------------
+
+Comment procéder ? 
+ici on veut commencer par créer l'histoire, qu'elle ait du sens et créer le lore.
+
+Pour cela on commence par réfléchir a comment on organise notre découpage narratif.
+
+Découper le lore en chapitres, puis en scènes :
+
+	Chapitre 1 : Île de l’Est (droite)
+		Scènes d’introduction (cabane, village, port, forêt).
+
+	Chapitre 2 : Îlot central
+		Quêtes politiques, commerce, factions.
+
+	Chapitre 3 : Île de l’Ouest
+		Exploration dangereuse, ennemis, résolution.
+
+
+
+------
+
+on part sur ça, quel nom donner a notre univers, planete, ile de gauche et milieu puis droite.
+
+sachant que sur l'ile de droite voici les territoires :
+[Mythtligh Theocracy with Dawncairn as the capital]
+[Republic of Grebornia with Deadwel as the capital]
+[Duchy of Depcairn with Wilportme as the capital]
+[Duchy of Shimberia with Storevade as the capital]
+[Principality of Erasthas with Wlafethyr as the cptl]
+[Principality of Genilsad with alyana as the capital]
+
+Sachant que c'est une carte en svg donc je peux possiblement rajouter des villes car ici on a juste le territoire et la capitale
+
+
+
+
+------
+
+
+Nommage : 
+
+Univers/Planète : Aevorim
+
+Île Ouest/L : Vorgath (terres sombres, hostiles).
+Justification : terres sombres, hostiles, anciennes civilisations perdues. Le nom sonne plus dur et menaçant.
+
+Îlot Central : Myrathis (commerce, capitale neutre).
+Justification : carrefour commercial, capitale politique, centre stratégique. Le nom doit évoquer neutralité et pouvoir.
+
+Île Est/R : Keryndor (départ, mosaïque de factions politiques).
+Justification : morcelée en théocratie, duchés, républiques → un patchwork politique, lieu d’apprentissage du joueur.
+
+
+
+------
+
+concernant les territoires : 
+
+Donner à chaque territoire un spécialisation (religion, commerce, militaire, agriculture, arts, magie…).
+
+Ajouter 2-3 villes secondaires par région (ex. ports, villages minières, avant-postes).
+
+Intégrer tout ça dans scenes.js avec voyages + temps de déplacement.
+
+
+------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

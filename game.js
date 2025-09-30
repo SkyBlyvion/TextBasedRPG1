@@ -343,7 +343,7 @@ function showChoices(options) {
 }
 
 // ======================
-// Initialisation
+// Initialisation + allChoices
 // ======================
 write("Bienvenue dans le RPG textuel !");
 showChoices([
